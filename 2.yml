@@ -1,3 +1,5 @@
+version: 2
+
 builds:
   - builder: prebuilt
     goos:
@@ -14,14 +16,6 @@ builds:
       path: dist-{{ .Os }}/foo_{{ .Os }}_{{ .Arch }}{{ with .Amd64 }}_{{ . }}{{ end }}/foo{{ .Ext }}
     binary: foo
 
-archives:
-  - replacements:
-      darwin: macOS
-      linux: Linux
-      windows: Windows
-      386: i386
-      amd64: x86_64
-
 checksum:
   name_template: "checksums.txt"
 
@@ -37,7 +31,7 @@ release:
   prerelease: auto
 
 brews:
-  - tap:
+  - repository:
       owner: foo
       name: bar
     description: Foo Bar
@@ -51,4 +45,3 @@ nfpms:
       - deb
       - rpm
       - apk
-
